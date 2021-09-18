@@ -1,0 +1,14 @@
+<nav id="navbar">
+    {% if user.is_authenticated %}
+    <div class="nav_button"><a class="nav_button_text" href="{% url 'logout' %}">Log out</a></div>
+    <div class="nav_username">
+        <h3 class="nav_username_text">{{ user.get_username }}</h3>
+    </div>
+    {% else %}
+    <div class="nav_button"><a class="nav_button_text" href="{% url 'register' %}">Register</a></div>
+    <div class="nav_button"><a class="nav_button_text" href="{% url 'login' %}">Log in</a></div>
+    
+    {% endif %}
+
+    
+</nav>

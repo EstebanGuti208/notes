@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block head_content %}
+<title>Notes</title>
+{% endblock %}
+
+{% block content %}
+    <h1>This is notes app</h1>
+    {% if message %}
+        {{ message }}
+    {% endif %}
+    <div class="note_container">
+        {% for note in notes %}
+        <div id="note-{{ note.id }}" class="note" style="background-color: {{ note.color }};" data-note_id="{{ note.id }}">
+            <h3 id="note-{{ note.id }}-text">{{ note.content }}</h3>
+        <div id="button-container-{{ note.id }}">
+
+            </div>
+        </div>
+        
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <form action="{% url 'main_notes' %}" method="POST">
+            {% csrf_token %}
+    
+            {{ note_form }}
+            <input class="new_note_button" type="submit" value="New note">
+    
+        </form>
+        {% endif %}
+    </div>
+    <form action="{% url 'randmail' %}" method="POST">
+        {% csrf_token %}
+        <input class="send_mail_button" type="submit" value="Send Mail">
+    </form>    
+{% endblock %}

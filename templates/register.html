@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% load static %}
+    <script src="{% static 'notesapp/new_notes.js' %}" ></script>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <form action="{% url 'register' %}" method="POST" id="register_form">
+            <h3>Register Form</h3>
+            
+            {%  if message %}
+                {{ message }}
+            {% endif %}
+
+            {% csrf_token %}
+    
+            {{ register_form }}
+            <input class="register_user_button" type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
